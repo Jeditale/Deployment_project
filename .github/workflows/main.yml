@@ -1,0 +1,48 @@
+# .github/workflows/ci.yml
+
+name: CI for POPY MOVIE Project
+
+# Trigger the workflow on push or pull request events to the main branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Define jobs that run in parallel
+jobs:
+  build:
+
+    # Specify the type of runner to use
+    runs-on: ubuntu-latest
+
+    # Define the steps of the job
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Specify the Node.js version you use
+          cache: 'npm'        # Enable caching for npm dependencies
+
+      # Step 3: Install project dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Compile TypeScript to JavaScript
+      - name: Build TypeScript
+        run: npm run build
+
+      # Step 5: Run tests
+      - name: Run Tests
+        run: npm test
+
+      # Step 6 (Optional): Lint the code
+      - name: Lint Code
+        run: npm run lint
