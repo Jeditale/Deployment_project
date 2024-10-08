@@ -3,13 +3,7 @@
 name: CI for POPY MOVIE Project
 
 # Trigger the workflow on push or pull request events to the main branch
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push]
 
 # Define jobs that run in parallel
 jobs:
@@ -22,17 +16,17 @@ jobs:
     steps:
       # Step 1: Checkout the repository code
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       # Step 2: Set up Node.js environment
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
           node-version: '18' # Specify the Node.js version you use
-          cache: 'npm'        # Enable caching for npm dependencies
+         
 
       # Step 3: Install project dependencies
-      - name: Install dependencies
+      - name: Install packagejson
         run: npm install
 
       # Step 4: Compile TypeScript to JavaScript
