@@ -1,51 +1,30 @@
-import express, { Request, Response } from 'express';
-import { Utils } from './Utils';
-
-import mongoose from 'mongoose';
-import userRoutes from './UserRoutes';
-import cors from 'cors'; //npm install --save-dev @types/cors
+import { Movie, MovieManager } from './Movie';
 
 
-const app = express();
-const port = process.env.PORT || 3000;
-
-import fs from 'fs';
-import path from 'path';
-const data:string = fs.readFileSync(path.join(__dirname, 'config.json'),
-  { encoding: 'utf8', flag: 'r' });
-
-const config = JSON.parse(data);
-const mongoUri = config.connection;
+const movieManager = new MovieManager();
 
 
-// Middleware
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json());
-app.use(cors());
-
-// Routes
-app.use('/api', userRoutes);
+const movie1: Movie = { id: 1, title: 'Inception', director: 'Christopher Nolan', releaseYear: 2010 };
+const movie2: Movie = { id: 2, title: 'Interstellar', director: 'Christopher Nolan', releaseYear: 2014 };
+const movie3: Movie = { id: 3, title: 'The Matrix', director: 'The Wachowskis', releaseYear: 1999 };
 
 
-
-app.get('/', async (req: Request, res: Response) => {
-    
-    res.send(Utils.add(1, 2) + "");
-
-});
-
-mongoose.connect(mongoUri)
-  .then(() => {
-    console.log('Connected to MongoDB');
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
-  })
-  .catch(err => {
-    console.error('Error connecting to MongoDB:', err);
-  });
+movieManager.addMovie(movie1);
+movieManager.addMovie(movie2);
+movieManager.addMovie(movie3);
 
 
-// app.listen(port, () => {
-//       console.log(`Server is running ${port}`);
-// });
+console.log('Movies in the collection:');
+console.log(movieManager.getMovies());
+
+// Find a movie by ID
+const foundMovie = movieManager.findMovieById(2);
+console.log('Found Movie:', foundMovie);
+
+// Remove a movie
+const removed = movieManager.removeMovie(1);
+console.log('Movie Removed:', removed);
+
+// Display the updated list of movies
+console.log('Updated Movie List:');
+console.log(movieManager.getMovies());
