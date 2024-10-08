@@ -4,7 +4,7 @@ Kancharod Meerat 662110182<br>
 Fonthip Lertchaisahakul 662110193<br>
 
 #  What we made 
-**MOVIE MANAGER SYSTEM**
+**MOVIE MANAGE SYSTEM**
 
 
 ### how to use
