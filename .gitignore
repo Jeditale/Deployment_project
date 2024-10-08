@@ -4,7 +4,3 @@
 !/src/**
 !README.md
 !package.json
-!package-lock.json
-!.github/workflows/
-!.github/workflows/**
-!movieconfig.json
