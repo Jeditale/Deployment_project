@@ -11,7 +11,7 @@ describe('MovieManager', () => {
   });
 
   test('should add a movie to the collection', () => {
-    movieManager.addMovie(movie2);
+    movieManager.addMovie(movie1);
     expect(movieManager.getMovies()).toContain(movie1);
   });
 
