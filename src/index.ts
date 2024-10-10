@@ -28,3 +28,13 @@ console.log('Movie Removed:', removed);
 // Display the updated list of movies
 console.log('Updated Movie List:');
 console.log(movieManager.getMovies());
+
+
+console.log('remove empty')
+const remov = movieManager.removeandkeep(2);
+console.log(remov);
+
+
+console.log('display all movie!!!!!!')
+console.log(movieManager.getMovies());
+

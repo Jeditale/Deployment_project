@@ -5,3 +5,6 @@
 !README.md
 !package.json
 !jest.config.js
+!/.github/
+!/.github/workflows
+!!/.github/workflows/**
